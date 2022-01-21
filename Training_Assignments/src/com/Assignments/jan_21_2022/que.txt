@@ -1,0 +1,16 @@
+	 	// Assignment: 1. Rotate the Image to Right -> 90 degrees
+	 	//			   2. Rotate the Image to Left  -> 180 degrees
+	 	//			   3. GrayScale the image
+	 	//					for a pixel sum up all values and divide by 3
+	 	//				    eg: for pixel1 -> 12+45+78/3 -> 45
+	 	//					pixel1 = {45, 45, 45}
+	 	//					do it for all pixels on the image
+	 	// 			   Hint: Use For Loops :)
+
+
+
+
+
+		// Assignment: 1. Sort the same arrays using the algos:
+		//					1.1 Bubble Sort
+		//					1.2 Insertion Sort
