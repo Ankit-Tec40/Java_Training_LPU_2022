@@ -68,5 +68,7 @@ public class image {
     public static void main(String[] args) {
         int[][][] pixel={ {{25,47,96},{24,48,36},{12,78,24}},{{48,14,105},{45,200,48},{78,47,75}},{{72,98,65},{114,45,93},{125,68,27}} };
         grayScale(pixel);
+        Print3DArray(pixel);
+
     }
 }
