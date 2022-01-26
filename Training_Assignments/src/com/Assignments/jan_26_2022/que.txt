@@ -1,0 +1,7 @@
+// Assignment: For 1 Order we can have many Dishes
+		//		Complete the above program where you will link multiple Dish Objects with 1 Order :)
+
+				// Assignment: 1. Alter the code above and make the totalPrice to reflect correct amount-->StaticVsNonStatic
+
+				// Assignment: Think of Use Cases for these different inheritance types and code them
+
