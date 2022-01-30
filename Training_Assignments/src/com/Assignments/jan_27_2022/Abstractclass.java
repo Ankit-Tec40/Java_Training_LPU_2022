@@ -1,6 +1,10 @@
 package com.Assignments.jan_27_2022;
 final class paytmpayment{
+    paytmcallbacks callbacks;
 
+    void on(paytmcallbacks callbacks) {
+        this.callbacks = callbacks;
+    }
 }
 abstract class paytmcallbacks{
     abstract void onSucess();
