@@ -1,83 +1,70 @@
 package com.Assignments;
+// Object class in Java is the Parent to all classes
+// Hence, we can have RTP implemented in Java as in
+// Object's Reference Variable can Reefer to any Object
 
-// Assume: This code is from Razorpay team
-// Razorpay payment gateway class
-final class RazorPay{
+//class Student extends Object{
+class Student{ // it will by default extend Object class
 
+    int rollNum;
+    String name;
+    String email;
 
-    RazorPayCallbacks callbacks; // reference variable to RazorPayCallbacks
-    // it will refer to the object of ZomatoPayment as per Polymorphic Statement
+    Student(){
 
-    boolean isBankInterfaceUp = false;
-
-    void pay(int amount) {
-        if(isBankInterfaceUp) {
-            System.out.println("[RazorPay] Payment is done for amount: "+amount);
-            callbacks.onSuccess("Payment success", 101);
-        }else {
-            System.out.println("[RazorPay] Payment is not done for amount: "+amount);
-            System.out.println("[RazorPay] Bank Interfcae is down. Please try again");
-            callbacks.onFailure("Payment Failed", 201);
-        }
     }
 
-    void on(RazorPayCallbacks callbacks) {
-        this.callbacks = callbacks;
+    Student(int rollNum, String name, String email) {
+        this.rollNum = rollNum;
+        this.name = name;
+        this.email = email;
     }
-}
 
 
-// Callbacks class
-// abstract class is a class for which we cannot create objects
-// hence, their is a feature of no method execution for this class directly
-abstract class RazorPayCallbacks{
+    @Override
+    public String toString() {
+        return "Student [rollNum=" + rollNum + ", name=" + name + ", email=" + email + "]";
+    }
 
-    // abstract methods -> can only be created inside the abstract class
-    // they do not have definition
-    // abstract methods are the RULES, which child must define
-    abstract void onSuccess(String message, int code);
-    abstract void onFailure(String message, int code);
+
+    // Override the toString method of Object class in Child Student class :)
+	/*public String toString() {
+		return rollNum+" - "+name+" - "+email+" - "+super.toString();
+	}*/
+
+    // Override hashCode and equals to compare 2 objects :)
 
 }
 
+// Remember, CA is Child of Student and hence, Grand Child of Object
+// Multi-Level Inheritance
+class CA extends Student{ // This does not mean CA will extends Object as well and this form multiple inheritance
 
-// Assume: This code is in Zomato
-//         Zomato is internally using Razorpay
-class ZomatoPayment extends RazorPayCallbacks{
-
-    void payForOrder(int amount) {
-
-        System.out.println("Processing Your Payment. Please Wait...");
-
-        // here we will internally open the RazorPay payment gateway
-        RazorPay razorPay = new RazorPay();
-        // this is a reference variable which is referring to the current object of ZomatoPayment
-        // RazorPayCallbacks callbacks = new ZomatoPayment(); // Polymorphic Statement
-        razorPay.on(this);
-
-        razorPay.pay(amount);
-    }
-
-    void onSuccess(String message, int code) {
-        if(message.contains("success") && code == 101) {
-            System.out.println("[ZOMATO] Your Order is Placed");
-            System.out.println("[ZOMATO] Delivery Agent it assigned");
-        }
-    }
-
-    void onFailure(String message, int code) {
-        System.out.println("[ZOMATO] Please try other payment method");
-    }
 }
 
-
-
-class AbstractClass {
+class ObjectClass {
 
     public static void main(String[] args) {
 
-        ZomatoPayment payment = new ZomatoPayment();
-        payment.payForOrder(300);
+        Student sRef = new Student(1, "John", "john@example.com");
+        //sRef.show();
+        System.out.println(sRef.getClass());
+        System.out.println(sRef.hashCode());
+        System.out.println("sRef is: "+sRef);
+        System.out.println("sRef.toString() is: "+sRef.toString());
+
+        //Object oRef = new Student(); // Polymorphic Statement
+
+        Student s1 = new Student(101, "Fionna", "fionna@example.com");
+        Student s2 = new Student(101, "Fionna", "fionna@example.com");
+
+        // equal method belongs to the Object class
+        // Assignment: Override the equals method of Object in Student and compare the 2 objects :)
+        if(s1.equals(s2)) {
+            System.out.println("s1 equals s2");
+        }else {
+            System.out.println("s1 not equals s2");
+        }
 
     }
 
