@@ -1,0 +1,8 @@
+CREATE TABLE PatientData(
+    ID int,
+    Name varchar(255),
+    PhoneNO varchar(255),
+    EmailID varchar(255),
+    DiseaseName varchar(255),
+    RegisteredData varchar(255));
+

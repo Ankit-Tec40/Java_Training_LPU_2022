@@ -1,0 +1,13 @@
+//class 3
+
+1. Explore labels with break and continue in Java and write a program for the same
+
+2.  1. Implement Ternary Operators if possible in above scenario
+   		// 			   2. Whenever a wrong promo code is applied, tell the user whats the right promo code
+   		//			   3. implement a use case i.e. Book a Cab by taking OLA/Uber as a case study
+
+		// Assignment: Place the n-queens on the chessboard by taking input form the User
+		//			   eg: User says row -> 1 and col -> 1 as input -> replace it with queen
+		//			   a total of 4 inputs can be taken to place 4 queens in the chessboard
+		//			   no queen can be placed in the same row again or same column again :)
+		//			   Hint: use a do, while loop and make sure not to take more than 4 queens positions
