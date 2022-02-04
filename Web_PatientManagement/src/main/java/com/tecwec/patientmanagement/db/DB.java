@@ -1,4 +1,4 @@
-package com.tecwec.db;
+package com.tecwec.patientmanagement.db;
 
 
 import java.sql.Connection;
@@ -19,7 +19,7 @@ public class DB {
             Class.forName("com.mysql.cj.jdbc.Driver");
             System.out.println("[DB] Driver Loaded");
 
-            String url = "jdbc:mysql://localhost/javaclass";
+            String url = "jdbc:mysql://localhost/patientsdata";
             String user = "root";
             String password = "pass";
 

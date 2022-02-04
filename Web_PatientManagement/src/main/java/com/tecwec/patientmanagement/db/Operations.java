@@ -1,6 +1,6 @@
-package com.tecwec.db;
+package com.tecwec.patientmanagement.db;
 
-import com.tecwec.model.PatientData;
+import com.tecwec.patientmanagement.model.PatientData;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -95,7 +95,7 @@ public class Operations implements Rules<PatientData>{
                     data.phone = set.getString(3); // column number
                     data.email = set.getString("EmailID"); // column name
                     data.disease = set.getString("DiseaseName"); // column name
-                    data.registeredOnDate = set.getString("RegisteredData"); // column name
+                    data.registeredOnDate = set.getString("RegisteredDate"); // column name
                     patientdata.add(data);
                 }
             }
@@ -105,5 +105,29 @@ public class Operations implements Rules<PatientData>{
         }
 
         return patientdata;
+    }
+
+//Login and Register
+    @Override
+    public int register(PatientData object) {
+        int result = 0;
+
+        String sql = "insert into authentication values(?, ?, ?)";
+        try {
+            Connection connection = db.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, object.name);
+            statement.setString(2, object.email);
+            statement.setString(3, object.password);
+            result = db.executeUpdate(statement);
+        }catch (Exception e) {
+            System.err.println("Some Exception: "+e);
+        }
+        return result;
+    }
+
+    @Override
+    public int login(PatientData object) {
+        return 0;
     }
 }
