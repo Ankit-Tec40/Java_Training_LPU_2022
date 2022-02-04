@@ -116,9 +116,9 @@ public class Operations implements Rules<PatientData>{
         try {
             Connection connection = db.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, object.name);
-            statement.setString(2, object.email);
-            statement.setString(3, object.password);
+            statement.setString(1, object.getName());
+            statement.setString(2, object.getEmail());
+            statement.setString(3, object.getPassword());
             result = db.executeUpdate(statement);
         }catch (Exception e) {
             System.err.println("Some Exception: "+e);

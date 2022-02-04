@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet(name = "RegisterServlet", value = "/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
@@ -28,7 +29,6 @@ public class RegisterServlet extends HttpServlet {
 
     public void destroy() {
         System.out.println("[RegisterServlet] - destroy");
-        db.closeConnection();
     }
 
     @Override
@@ -40,10 +40,28 @@ public class RegisterServlet extends HttpServlet {
         String password=req.getParameter("txtPassword");
         authData.setPassword(password);
 
-        //insert if DB
+        //insert to DB
         int result = rules.register(authData);
         String message = result > 0 ? authData.name + " Registered" : authData.name + " Registration failed";
         System.out.println(message);
+
+
+        // Send Back Response to the client
+        resp.setContentType("text/html");
+        PrintWriter out =resp.getWriter();
+
+        // Generate HTML Text
+        StringBuffer buffer = new StringBuffer();
+        buffer.append("<html><body>");
+        buffer.append("<center>");
+        buffer.append("<br><br><h3>"+message+"</h3>");
+        //buffer.append("<p>"+authData.name+" Registered"+"</p>");
+        buffer.append("</center>");
+        buffer.append("</body></html>");
+
+        // Send HTML text as Response
+        out.print(buffer.toString());
+
 
     }
 }
