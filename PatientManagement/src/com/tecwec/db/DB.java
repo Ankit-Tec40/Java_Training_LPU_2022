@@ -13,6 +13,7 @@ public class DB {
     Statement statement;
 
     private static DB db = new DB();
+
     private DB() {
 
         try {
@@ -24,7 +25,7 @@ public class DB {
             String password = "pass";
 
             connection = DriverManager.getConnection(url, user, password);
-            System.out.println("[DB] Connection Created");
+            System.out.println("[DB] Connection Created: "+connection);
 
         } catch (Exception e) {
             System.out.println("Something Went Wrong: "+e);
@@ -79,5 +80,9 @@ public class DB {
         }
     }
 
+//    public static void main(String[] args) {
+//        DB ob=DB.getDB();
+//        System.out.println(db.getConnection());
+//    }
 
 }

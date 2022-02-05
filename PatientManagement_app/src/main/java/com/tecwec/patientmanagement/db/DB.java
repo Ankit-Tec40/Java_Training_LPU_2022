@@ -1,11 +1,7 @@
 package com.tecwec.patientmanagement.db;
 
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 public class DB {
 
@@ -13,18 +9,19 @@ public class DB {
     Statement statement;
 
     private static DB db = new DB();
+
     private DB() {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             System.out.println("[DB] Driver Loaded");
 
-            String url = "jdbc:mysql://localhost/patientsdata";
+            String url = "jdbc:mysql://localhost/patients";
             String user = "root";
             String password = "pass";
 
             connection = DriverManager.getConnection(url, user, password);
-            System.out.println("[DB] Connection Created");
+            System.out.println("[DB] Connection Created: "+connection.toString());
 
         } catch (Exception e) {
             System.out.println("Something Went Wrong: "+e);
@@ -36,6 +33,7 @@ public class DB {
     }
 
     public Connection getConnection() {
+        System.out.println("Connecting to DB.....");
         return connection;
     }
 
@@ -79,5 +77,10 @@ public class DB {
         }
     }
 
+
+    public static void main(String[] args) {
+        DB ob=DB.getDB();
+        System.out.println(ob.getConnection());
+    }
 
 }

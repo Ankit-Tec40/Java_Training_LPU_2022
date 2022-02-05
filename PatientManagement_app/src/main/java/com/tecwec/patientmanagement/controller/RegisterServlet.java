@@ -18,7 +18,6 @@ import java.io.PrintWriter;
 public class RegisterServlet extends HttpServlet {
 
     Rules<PatientData> rules;
-    DB db;
 
 
     public void init(ServletConfig config) throws ServletException {
@@ -43,7 +42,7 @@ public class RegisterServlet extends HttpServlet {
         //insert to DB
         int result = rules.register(authData);
         String message = result > 0 ? authData.name + " Registered" : authData.name + " Registration failed";
-        System.out.println(message);
+        //System.out.println(message);
 
 
         // Send Back Response to the client
@@ -61,7 +60,6 @@ public class RegisterServlet extends HttpServlet {
 
         // Send HTML text as Response
         out.print(buffer.toString());
-
-
     }
+
 }

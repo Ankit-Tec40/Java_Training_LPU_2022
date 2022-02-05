@@ -2,6 +2,7 @@ package com.tecwec.patientmanagement.db;
 
 import com.tecwec.patientmanagement.model.PatientData;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,13 +10,13 @@ import java.util.ArrayList;
 
 public class Operations implements Rules<PatientData>{
 
-    DB db=DB.getDB();
+    static DB db=DB.getDB();
 
     @Override
     public int insert(PatientData object) {
         int result = 0;
 
-        String sql = "insert into PatientData values(null, ?, ?, ?, ?, ?)";
+        String sql = "insert into PatientsData values(null, ?, ?, ?, ?, ?)";
         try {
 
             Connection connection = db.getConnection();
@@ -38,7 +39,7 @@ public class Operations implements Rules<PatientData>{
     public int update(PatientData object) {
         int result = 0;
 
-        String sql = "update PatientData set Name = ?, PhoneNo = ?, EmailID = ?, DiseaseName = ? where ID = ?";
+        String sql = "update PatientsData set Name = ?, PhoneNo = ?, EmailID = ?, DiseaseName = ? where ID = ?";
 
         try {
 
@@ -62,7 +63,7 @@ public class Operations implements Rules<PatientData>{
     public int delete(int id) {
         int result = 0;
 
-        String sql = "delete from Customer where id = ?";
+        String sql = "delete from PatientsData where id = ?";
         try {
             Connection connection = db.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -107,27 +108,35 @@ public class Operations implements Rules<PatientData>{
         return patientdata;
     }
 
-//Login and Register
-    @Override
-    public int register(PatientData object) {
-        int result = 0;
-
-        String sql = "insert into authentication values(?, ?, ?)";
-        try {
-            Connection connection = db.getConnection();
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, object.getName());
-            statement.setString(2, object.getEmail());
-            statement.setString(3, object.getPassword());
-            result = db.executeUpdate(statement);
-        }catch (Exception e) {
-            System.err.println("Some Exception: "+e);
-        }
-        return result;
-    }
 
     @Override
     public int login(PatientData object) {
         return 0;
     }
+
+
+    //Login and Register
+    @Override
+    public int register(PatientData object) {
+        System.out.println("Registing user");
+
+        int result = 0;
+
+//        String sql = "insert into authentication values(?, ?, ?)";
+        try {
+            System.out.println("try Registing user");
+            Connection connection = db.getConnection();
+            System.out.println("Connected to database: "+connection);
+//            PreparedStatement statement = connection.prepareStatement(sql);
+//            statement.setString(1, object.getName());
+//            statement.setString(2, object.getEmail());
+//            statement.setString(3, object.getPassword());
+//            result = db.executeUpdate(statement);
+        }catch (Exception e) {
+            System.err.println("Some Exception while Registering User: "+e);
+        }
+        return result;
+    }
+
+
 }
